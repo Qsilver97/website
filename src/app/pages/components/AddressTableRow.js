@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import _ from 'lodash';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 import { useSocket } from 'src/app/context/SocketContext';
 import { formatString, getTimeAgo } from 'src/app/utils/function';
 import AddressText from './common/AddressText';
@@ -86,7 +88,9 @@ function AddressTableRow(props) {
         </TableCell>
 
         <TableCell component="th" scope="row" className="border-b-main-80">
-          <TickText className={className} tick={row[4] === 'failed' ? 'failed' : 'confirmed'} />
+          {row[4] === 'confirmed' && <CheckIcon className="text-green" />}
+          {row[4] === 'failed' && <CloseIcon className="text-red" />}
+          {row[4] === '' && ''}
         </TableCell>
 
         {hoverIdx === idx && sctx && row[2].startsWith('BAAAAAAA') && (

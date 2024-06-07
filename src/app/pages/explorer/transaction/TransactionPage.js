@@ -2,6 +2,8 @@ import { isEmpty } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Typography, Box, useMediaQuery } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 import { formatString, getTimeAgo } from 'src/app/utils/function';
 import { useSocket } from 'src/app/context/SocketContext';
 import LinearProgress from '../../components/common/LinearProgress';
@@ -119,6 +121,26 @@ function TransactionPage() {
                 />
                 <AddressText address={txData?.utc} className="text-white text-16" copy />
               </div>
+            </div>
+            <div className="flex justify-between items-center w-full gap-36 py-3 border-b-1">
+              <div className="flex w-60 items-center gap-4">
+                <img className="w-20 h-20" src="assets/icons/information-icon.svg" alt="icon" />
+                <Typography className="text-hawkes-100 text-16 font-urb">Status</Typography>
+              </div>
+              {txData && txData.status && txData.status === 'confirmed' && (
+                <div className="flex gap-10 items-center">
+                  <span>Confirmed</span>
+                  <CheckIcon className="text-green" />
+                </div>
+              )}
+              {txData && txData.status && txData.status === 'failed' ? (
+                <div className="flex gap-10 items-center">
+                  <span>Failed</span>
+                  <CloseIcon className="text-red" />
+                </div>
+              ) : (
+                ''
+              )}
             </div>
             <div className="flex justify-between items-center w-full gap-36 py-3 border-b-1">
               <div className="flex w-full items-center gap-4">
