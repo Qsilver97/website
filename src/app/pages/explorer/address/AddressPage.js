@@ -187,6 +187,7 @@ function AddressPage() {
                   <TableCell className="border-b-main-80 text-white">Time</TableCell>
                   <TableCell className="border-b-main-80 text-white">Address</TableCell>
                   <TableCell className="border-b-main-80 text-white">Amount</TableCell>
+                  <TableCell className="border-b-main-80 text-white">Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

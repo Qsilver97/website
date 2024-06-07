@@ -46,6 +46,8 @@ function AddressTableRow(props) {
     return () => clearInterval(intervalId);
   }, []);
 
+  const className = row[4] === 'failed' ? 'text-red-100' : 'text-white';
+
   return (
     <>
       <TableRow
@@ -82,6 +84,11 @@ function AddressTableRow(props) {
         >
           <TickText className="text-white" tick={formatString(row[3])} copy />
         </TableCell>
+
+        <TableCell component="th" scope="row" className="border-b-main-80">
+          <TickText className={className} tick={row[4] === 'failed' ? 'failed' : 'confirmed'} />
+        </TableCell>
+
         {hoverIdx === idx && sctx && row[2].startsWith('BAAAAAAA') && (
           <TableCell className="absolute bg-white text-black border border-gray-300 shadow-lg p-2 max-w-[300px] bottom-5 left-5 break-words overflow-hidden whitespace-normal z-10">
             {itemLoading ? (
